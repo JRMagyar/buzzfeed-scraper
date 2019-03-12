@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
-
-mongoose.connect("mongodb://localhost/testingdb", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/testingdb"
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 
 //scraping with axios and cheerio
