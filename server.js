@@ -3,7 +3,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const mongoose = require("mongoose");
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const db = require("./models")
 
@@ -130,5 +130,5 @@ app.post("/articles/:id", function(req, res) {
 
 // Listen on port 3000
 app.listen(PORT, function() {
-  console.log("App running on port 3000!");
+  console.log("App running on port " + PORT);
 });
