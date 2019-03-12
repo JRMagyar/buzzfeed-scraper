@@ -2,6 +2,8 @@ const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const mongoose = require("mongoose");
+const exphbs = require("express-handlebars");
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,6 +17,15 @@ app.use(express.json());
 app.use(express.static("public"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/testingdb"
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+//handlebars
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+app.set("view engine", "handlebars");
 
 
 //scraping with axios and cheerio
@@ -87,10 +98,10 @@ app.get("/scrape", function(req,res){
 })
 
 //viewing all articles
-app.get("/articles", function(req, res) {
+app.get("/", function(req, res) {
   db.Article.find({})
     .then(function(dbArticle) {
-      res.json(dbArticle);
+      res.render("all",{articles: dbArticle});
     })
     .catch(function(err) {
       res.json(err);
