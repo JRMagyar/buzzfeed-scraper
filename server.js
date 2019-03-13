@@ -93,8 +93,11 @@ app.get("/scrape", function(req,res){
     // console.log(links);
     // console.log(summaries);
     //console.log(images);
+  }).then(function(){
   })
-  res.send("stuff goes here")
+  homelink = "<a href='/'>Return Home</a>"
+  res.send("Articles Scraped." + homelink +" to view.")
+  
 })
 
 //viewing all articles
@@ -115,7 +118,8 @@ app.get("/articles/:id", function(req, res) {
     // ..and populate all of the notes associated with it
     .populate("comment")
     .then(function(dbArticle) {
-      res.json(dbArticle);
+      res.render("single", {article: dbArticle});
+      console.log({article: dbArticle});
     })
     .catch(function(err) {
       res.json(err);

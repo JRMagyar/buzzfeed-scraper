@@ -1,0 +1,24 @@
+<main class="container">
+    <div id="article-div m-2" style="border: 1px black solid; height:210px; margin-bottom:2%">
+        <img id="article-image" class = "float-left m-1" src="{{article.image}}" style="max-height:300px; max-width: 300px;">
+        <h3>{{article.title}}</h3>
+        <p>{{article.summary}}</p>
+        <a href="{{article.link}}" class="btn btn-danger m-1">View Article</a>
+    </div>
+    
+    <div id="comments-div" class="row">
+        <h1>COMMENTS</h1>
+    </div>
+
+        {{#article}}
+        {{@index}} {{comment}}
+        <div id="comment">
+            <h2>
+               {{this.user}} 
+                
+            </h2>
+        </div>
+        {{/article}}
+    
+</main>
+{{!-- 5c87075605464a3ea8e37cd5 --}}
