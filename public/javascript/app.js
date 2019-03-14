@@ -1,4 +1,5 @@
 window.onload = function() {
+
     $("#submit-button").on("click", function(){
         event.preventDefault();
         console.log("submit click")
@@ -15,6 +16,8 @@ window.onload = function() {
             type: "POST",
             url: window.location.href,
             data: JSON.stringify(userComment)
-          });
+        }).then(location.reload())
+
+          
     })
 }
