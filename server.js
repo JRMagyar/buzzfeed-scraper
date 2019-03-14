@@ -100,6 +100,8 @@ app.get("/scrape", function(req,res){
   
 })
 
+/* -/-/-/-/-/-ROUTES/-/-/-/-/-/-/- */
+
 //viewing all articles
 app.get("/", function(req, res) {
   db.Article.find({})
